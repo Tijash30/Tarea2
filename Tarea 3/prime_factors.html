@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Factors</title>
+    <script>
+        var getPrimeFactors = function (n) {
+            "use strict";
+            var sequence = [];
+            function isPrime(n){
+                for(var i=2; i<=Math.sqrt(n);i++){
+                    if (n % i === 0){
+                        return false;
+                    }
+                }
+                return true;
+            }
+            for(var i=2; i<n; i++){
+                if(isPrime(i)){
+                    sequence.push(i);
+                }
+            }
+            let ans=[];
+            var conti=0;
+            while(n != 1){
+                if(n % sequence[conti] == 0){
+                    ans.push(sequence[conti]);
+                    n /= sequence[conti];
+                }else{
+                    conti++;
+                }
+            }
+                       //TODO: Check which numbers are factors of n and also check if
+            // that number also happens to be a prime
+            return ans;
+        };
+        function chequeo(){
+            var numi= parseInt(document.getElementById("num").value)
+            if (!isNaN(numi)){
+                let answ=[];
+                answ= getPrimeFactors(numi);
+                var item= document.createElement("li");
+                item.innerHTML="The prime factors of "+numi+" are "+answ;
+                //item.innerHTML= "The prime factors of the number are:\t"+numi;
+                document.getElementById("liste").appendChild(item);   
+            }
+        }
+    </script>
+    <style>
+        li{
+            color: aliceblue;
+        }
+    </style>
+</head>
+<body background="CAPO ABRIL2021.jpg">
+    <center>
+        <input type="number" id="num" placeholder="Enter an Integer">
+        <button type="button" onclick="chequeo()">Ready!</button>
+        <ul id="liste"></ul>
+    </center>
+</body>
+</html>

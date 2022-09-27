@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        p{
+            position: absolute;
+            left: 43%;
+        }
+    </style>
+
+    <script type="text/javascript">
+        function checkPrime(){
+            var id= document.getElementById("num");
+            var number= parseInt(id.value);
+            var maxNum= parseInt(1299827);
+            if(number<maxNum && !isNaN(number)){
+                for(var i= number+1; i<maxNum; i++){
+                    if(isPrime(i)){
+                        //alert(i); 
+                        var item= document.createElement("li");
+                        item.innerHTML= "The next prime number after "+number+" is "+ i;
+                        document.getElementById("liste").appendChild(item);   
+                        //document.body.appendChild(item);
+                        break;
+                    }
+                }
+            }
+            else{
+                window.alert("Please enter a number below 1299827 or enter a valid integer");
+                id.value= "";
+            }
+        }
+        function isPrime(num){
+            for(var i=2; i<=Math.sqrt(num);i++){
+                if (num % i === 0){
+                    return false;
+                }
+            }
+            return true;
+        }
+    </script>
+</head>
+<body>
+    <center>
+        <h3>Primes</h3>
+        <input type="number" id="num"  placeholder="Enter an Integer"/>
+        <button type="button" onclick="checkPrime()">Click to chech next Prime</button>}
+        <ul id="liste"></ul>
+    </center>
+</body>
+</html>

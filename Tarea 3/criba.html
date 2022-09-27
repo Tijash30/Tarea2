@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Criba</title>
+    <script>
+        function primo(numero){
+            let ans = true;
+            for(let i = 2; i < numero; i++){
+                if(numero % i == 0){
+                    ans = false;
+                }
+            }
+            if(ans){
+                return true;
+            }else{
+                return false;
+            }
+        }
+        function checar(cant){
+            let a = [];
+            for(let i = 2; i <= cant; i++){
+                if(primo(i)){
+                    a.push(i);
+                }
+            }
+            console.log(a);
+            return a;
+        }
+        function obtener(){
+            var numi= parseInt(document.getElementById("num").value);
+            if (!isNaN(numi)){
+                let answ=[];
+                answ= checar(numi);
+                var item= document.createElement("li");
+                item.innerHTML="The primes of "+numi+" are "+answ;
+                //item.innerHTML= "The prime factors of the number are:\t"+numi;
+                document.getElementById("liste").appendChild(item);   
+            }
+        }
+    </script>
+<style>
+    li{
+        color: aliceblue;
+    }
+</style>
+</head>
+<body background="CAPO ABRIL2021.jpg">
+<center>
+    <input type="number" id="num" placeholder="Enter an Integer">
+    <button type="button" onclick="obtener()">Ready!</button>
+    <ul id="liste"></ul>
+</center>
+</body>
+</html>
